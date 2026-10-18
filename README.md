@@ -33,6 +33,6 @@ Build estático em `dist/` — compatível com Vercel, Netlify, GitHub Pages, et
 
 ## Contato
 
-- [ga13121110@gmail.com](mailto:ga13121110@gmail.com)
+- [gabrielanthony.dev@gmail.com](mailto:gabrielanthony.dev@gmail.com)
 - [GitHub — @Gabs-X](https://github.com/Gabs-X)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-anthony-7688bb224/)
