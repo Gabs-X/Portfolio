@@ -1,20 +1,27 @@
 import { useState } from 'react';
 import { useLanguage } from '../i18n/useLanguage';
+import type { ProjectTranslation } from '../i18n/translations';
 import ProjectModal from './ProjectModal';
 import AnimateIn from './AnimateIn';
 
-export default function BentoProjects() {
+interface BentoProjectsProps {
+  id: string;
+  sectionLabel: string;
+  title: string;
+  projects: ProjectTranslation[];
+}
+
+export default function BentoProjects({ id, sectionLabel, title, projects }: BentoProjectsProps) {
   const { t } = useLanguage();
-  const projects = t.projects.items;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
-    <section id="projetos" className="py-24 bg-slate-950 text-white border-t border-slate-800/60">
+    <section id={id} className="py-24 bg-slate-950 text-white border-t border-slate-800/60">
       <div className="max-w-6xl mx-auto px-6">
         <AnimateIn trigger="view" delay={0}>
           <div className="mb-12">
-            <p className="font-mono text-xs text-cyan-400 uppercase tracking-widest">{t.projects.sectionLabel}</p>
-            <h2 className="text-3xl font-bold tracking-tight mt-1">{t.projects.title}</h2>
+            <p className="font-mono text-xs text-cyan-400 uppercase tracking-widest">{sectionLabel}</p>
+            <h2 className="text-3xl font-bold tracking-tight mt-1">{title}</h2>
           </div>
         </AnimateIn>
 
@@ -52,14 +59,27 @@ export default function BentoProjects() {
                       </span>
                     ))}
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedIndex(index)}
-                    className="text-xs font-mono text-cyan-400 hover:underline flex items-center space-x-1"
-                  >
-                    <span>{t.projects.moreDetails}</span>
-                    <span>&rarr;</span>
-                  </button>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedIndex(index)}
+                      className="text-xs font-mono text-cyan-400 hover:underline flex items-center space-x-1"
+                    >
+                      <span>{t.projects.moreDetails}</span>
+                      <span>&rarr;</span>
+                    </button>
+                    {project.links?.map((link) => (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors"
+                      >
+                        {link.label} &#8599;
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </AnimateIn>

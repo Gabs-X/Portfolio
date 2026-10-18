@@ -6,6 +6,7 @@ export interface ProjectTranslation {
   description: string;
   tags: string[];
   highlights: string[];
+  links?: { label: string; url: string }[];
 }
 
 export interface Translations {
@@ -54,7 +55,13 @@ export interface Translations {
       close: string;
       highlights: string;
       technologies: string;
+      links: string;
     };
+    items: ProjectTranslation[];
+  };
+  sideProjects: {
+    sectionLabel: string;
+    title: string;
     items: ProjectTranslation[];
   };
   footer: {
@@ -129,6 +136,7 @@ export const translations: Record<Language, Translations> = {
         close: 'Fechar',
         highlights: 'Destaques',
         technologies: 'Tecnologias',
+        links: 'Links',
       },
       items: [
         {
@@ -277,6 +285,74 @@ export const translations: Record<Language, Translations> = {
         },
       ],
     },
+    sideProjects: {
+      sectionLabel: '// Projetos Pessoais',
+      title: 'Produtos e estudos independentes',
+      items: [
+        {
+          title: 'StackMatch',
+          category: 'Produto próprio • Full Stack • IA',
+          description:
+            'Plataforma que conecta empresas e desenvolvedores, construída e colocada no ar em 3 semanas. O dev tem um perfil padronizado e um mural de vagas com a compatibilidade calculada para ele; a empresa faz a triagem em cards e acompanha cada candidato em um funil de contratação.',
+          tags: ['React 19', 'TypeScript', 'TanStack Start', 'PostgreSQL', 'Drizzle ORM', 'Claude API', 'Vitest', 'Playwright'],
+          highlights: [
+            'Vagas com funil de contratação, do "salvo" ao "contratado", com histórico de cada etapa.',
+            'Match entre vaga e dev calculado em SQL e explicado critério por critério, sem "dar nota" para pessoas.',
+            'Propostas de conversa com aceite, remarcação e convite de agenda (.ics).',
+            'Ada, assistente de suporte com IA (Claude), com teto de gasto mensal e limites por uso.',
+            'Tradução automática PT ⇄ EN de perfis e vagas.',
+            'Segurança de conta: confirmação por código, limite de tentativas de login e telas que não revelam quais e-mails estão cadastrados.',
+          ],
+          links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
+        },
+        {
+          title: 'Gemini Chatbot',
+          category: 'Full Stack • IA • Desafio técnico',
+          description:
+            'Chatbot com IA desenvolvido em apenas 24 horas, como desafio técnico. Front-end em React e back-end em Node.js com Express integrado à API do Gemini, com testes automatizados e tratamento de erros.',
+          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
+          highlights: [
+            'Entregue em 24 horas, do zero ao funcionamento completo.',
+            'Back-end organizado em Route → Controller → Service.',
+            'Testes automatizados de controller, service e rotas com Vitest e Supertest.',
+            'Tratamento de mensagem vazia, configuração ausente e falha na API.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+        },
+        {
+          title: 'GitHub Projects Lab',
+          category: 'DevOps • Automação',
+          description:
+            'Kanban automatizado com GitHub Projects (V2) e GitHub Actions, em que os cards andam sozinhos pelo fluxo de desenvolvimento: Issue, branch, PR em rascunho, review e merge.',
+          tags: ['GitHub Actions', 'GraphQL', 'GitHub Projects', 'Python', 'Shell'],
+          highlights: [
+            'Automação idempotente: consulta o estado real do PR via GraphQL a cada execução.',
+            'Reconciliação agendada que corrige eventos perdidos.',
+            'GitHub App como credencial (o GITHUB_TOKEN não acessa Projects V2).',
+            'Script em Python que migra um roadmap em markdown para Issues com campos e sub-issues.',
+            'Manual passo a passo com 62 descobertas documentadas e uma variante pronta para uso.',
+          ],
+          links: [
+            { label: 'GitHub', url: 'https://github.com/Gabs-X-Lab/github-projects-lab' },
+            { label: 'kanban-automation', url: 'https://github.com/Gabs-X-Lab/kanban-automation' },
+          ],
+        },
+        {
+          title: 'SampleBankOperations',
+          category: 'Backend • .NET • Testes',
+          description:
+            'Aplicação de operações bancárias em C#/.NET 9 organizada em camadas (Core, Application, Infrastructure e App), com regras de saque, transferência e juros injetáveis e uma suíte de testes automatizados.',
+          tags: ['C#', '.NET 9', 'xUnit', 'Moq', 'FluentAssertions', 'Bogus', 'Arquitetura em Camadas'],
+          highlights: [
+            '63 testes automatizados com xUnit, Moq, FluentAssertions e Bogus.',
+            'Regras de saque e transferência recebidas como predicados, sem alterar o serviço.',
+            'Repositório e logger atrás de interfaces, com injeção de dependência.',
+            'Relatório de cobertura de testes com coverlet.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/SampleBankOperationsTest' }],
+        },
+      ],
+    },
     footer: {
       title: 'Vamos conversar.',
       subtitle: 'Estou aberto a oportunidades como Desenvolvedor Full Stack.',
@@ -347,6 +423,7 @@ export const translations: Record<Language, Translations> = {
         close: 'Close',
         highlights: 'Highlights',
         technologies: 'Technologies',
+        links: 'Links',
       },
       items: [
         {
@@ -490,6 +567,74 @@ export const translations: Record<Language, Translations> = {
             'Reduced technical debt by modernizing legacy authentication mechanisms.',
             'Improved application security while minimizing impact on production systems.',
           ],
+        },
+      ],
+    },
+    sideProjects: {
+      sectionLabel: '// Personal Projects',
+      title: 'Independent products and studies',
+      items: [
+        {
+          title: 'StackMatch',
+          category: 'Own product • Full Stack • AI',
+          description:
+            'A platform that connects companies and developers, built and launched in 3 weeks. Developers get a standardized profile and a job board with the match calculated for them; companies screen candidates through cards and track each one in a hiring funnel.',
+          tags: ['React 19', 'TypeScript', 'TanStack Start', 'PostgreSQL', 'Drizzle ORM', 'Claude API', 'Vitest', 'Playwright'],
+          highlights: [
+            'Jobs with a hiring funnel, from "saved" to "hired", with the history of each stage.',
+            'Job-to-developer match calculated in SQL and explained criterion by criterion, without rating people.',
+            'Call proposals with acceptance, rescheduling and calendar invites (.ics).',
+            'Ada, an AI support assistant (Claude) with a monthly spending cap and usage limits.',
+            'Automatic PT ⇄ EN translation of profiles and jobs.',
+            'Account security: code confirmation, sign-in attempt limits and screens that never reveal which e-mails are registered.',
+          ],
+          links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
+        },
+        {
+          title: 'Gemini Chatbot',
+          category: 'Full Stack • AI • Technical challenge',
+          description:
+            'An AI chatbot built in just 24 hours as a technical challenge. React front end and a Node.js/Express back end integrated with the Gemini API, with automated tests and error handling.',
+          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
+          highlights: [
+            'Delivered in 24 hours, from scratch to fully working.',
+            'Back end organized as Route → Controller → Service.',
+            'Automated tests for controller, service and routes with Vitest and Supertest.',
+            'Handles empty messages, missing configuration and API failures.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+        },
+        {
+          title: 'GitHub Projects Lab',
+          category: 'DevOps • Automation',
+          description:
+            'An automated Kanban with GitHub Projects (V2) and GitHub Actions, where cards move on their own through the development flow: Issue, branch, draft PR, review and merge.',
+          tags: ['GitHub Actions', 'GraphQL', 'GitHub Projects', 'Python', 'Shell'],
+          highlights: [
+            'Idempotent automation: reads the real PR state through GraphQL on every run.',
+            'Scheduled reconciliation that fixes missed events.',
+            'GitHub App as the credential (GITHUB_TOKEN cannot access Projects V2).',
+            'Python script that migrates a markdown roadmap into Issues with fields and sub-issues.',
+            'Step-by-step manual with 62 documented findings and a ready-to-use variant.',
+          ],
+          links: [
+            { label: 'GitHub', url: 'https://github.com/Gabs-X-Lab/github-projects-lab' },
+            { label: 'kanban-automation', url: 'https://github.com/Gabs-X-Lab/kanban-automation' },
+          ],
+        },
+        {
+          title: 'SampleBankOperations',
+          category: 'Backend • .NET • Testing',
+          description:
+            'A banking operations application in C#/.NET 9 organized in layers (Core, Application, Infrastructure and App), with injectable withdrawal, transfer and interest rules and an automated test suite.',
+          tags: ['C#', '.NET 9', 'xUnit', 'Moq', 'FluentAssertions', 'Bogus', 'Layered Architecture'],
+          highlights: [
+            '63 automated tests with xUnit, Moq, FluentAssertions and Bogus.',
+            'Withdrawal and transfer rules passed in as predicates, without changing the service.',
+            'Repository and logger behind interfaces, wired with dependency injection.',
+            'Test coverage report with coverlet.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/SampleBankOperationsTest' }],
         },
       ],
     },

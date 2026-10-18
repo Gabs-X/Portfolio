@@ -9,6 +9,7 @@ interface ProjectModalProps {
     close: string;
     highlights: string;
     technologies: string;
+    links: string;
   };
   onClose: () => void;
 }
@@ -109,6 +110,27 @@ export default function ProjectModal({
               ))}
             </div>
           </div>
+
+          {project.links && project.links.length > 0 && (
+            <div>
+              <p className="font-mono text-xs text-cyan-400 uppercase tracking-widest mb-3">
+                {labels.links}
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2">
+                {project.links.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-mono text-slate-300 hover:text-cyan-400 transition-colors"
+                  >
+                    {link.label} &#8599;
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
