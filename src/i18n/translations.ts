@@ -37,7 +37,7 @@ export interface Translations {
       role: string;
       period: string;
       items: string[];
-    };
+    }[];
   };
   hero: {
     badge: string;
@@ -105,19 +105,43 @@ export const translations: Record<Language, Translations> = {
           { label: 'Domínio de Negócio', items: 'Integrações • ERP • Financeiro • Logística • Sustentação' },
         ],
       },
-      experiencia: {
-        company: 'Eletrozema S/A',
-        role: 'Desenvolvedor Full Stack',
-        period: 'Março 2021 — Outubro 2025',
-        items: [
-          'Desenvolvimento e sustentação de sistemas corporativos.',
-          'APIs REST e integrações financeiras.',
-          'Desenvolvimento de aplicações React e .NET.',
-          'Modelagem e consultas SQL Server.',
-          'Sistemas de estoque, logística, assistência técnica e processos financeiros.',
-          'Investigação e resolução de incidentes em produção.',
-        ],
-      },
+      experiencia: [
+        {
+          company: 'Projetos independentes',
+          role: 'Desenvolvedor Full Stack (autônomo)',
+          period: 'Novembro 2025 — Atual',
+          items: [
+            'StackMatch: plataforma que conecta empresas e desenvolvedores, do zero ao ar em 3 semanas.',
+            'Chatbot com IA (React, Node.js e Gemini) entregue em 24 horas como desafio técnico.',
+            'Kanban automatizado com GitHub Projects, GitHub Actions e GraphQL.',
+          ],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Desenvolvedor Full Stack',
+          period: 'Agosto 2023 — Outubro 2025',
+          items: [
+            'Desenvolvimento e sustentação de sistemas corporativos.',
+            'APIs REST e integrações financeiras.',
+            'Desenvolvimento de aplicações React e .NET.',
+            'Modelagem e consultas SQL Server.',
+            'Sistemas de estoque, logística, assistência técnica e processos financeiros.',
+            'Investigação e resolução de incidentes em produção.',
+          ],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Estagiário de Desenvolvimento Full Stack',
+          period: 'Agosto 2022 — Julho 2023',
+          items: [],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Jovem Aprendiz • Assistente Administrativo',
+          period: 'Março 2021 — Agosto 2022',
+          items: [],
+        },
+      ],
     },
     hero: {
       badge: 'Desenvolvedor Full Stack',
@@ -392,19 +416,43 @@ export const translations: Record<Language, Translations> = {
           { label: 'Business Domain', items: 'Integrations • ERP • Finance • Logistics • Maintenance' },
         ],
       },
-      experiencia: {
-        company: 'Eletrozema S/A',
-        role: 'Full Stack Developer',
-        period: 'March 2021 — October 2025',
-        items: [
-          'Development and maintenance of enterprise systems.',
-          'REST APIs and financial integrations.',
-          'React and .NET application development.',
-          'SQL Server modeling and queries.',
-          'Inventory, logistics, technical support, and financial process systems.',
-          'Production incident investigation and resolution.',
-        ],
-      },
+      experiencia: [
+        {
+          company: 'Independent projects',
+          role: 'Full Stack Developer (self-employed)',
+          period: 'November 2025 — Present',
+          items: [
+            'StackMatch: a platform that connects companies and developers, built and launched in 3 weeks.',
+            'AI chatbot (React, Node.js and Gemini) delivered in 24 hours as a technical challenge.',
+            'Automated Kanban with GitHub Projects, GitHub Actions and GraphQL.',
+          ],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Full Stack Developer',
+          period: 'August 2023 — October 2025',
+          items: [
+            'Development and maintenance of enterprise systems.',
+            'REST APIs and financial integrations.',
+            'React and .NET application development.',
+            'SQL Server modeling and queries.',
+            'Inventory, logistics, technical support, and financial process systems.',
+            'Production incident investigation and resolution.',
+          ],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Full Stack Development Intern',
+          period: 'August 2022 — July 2023',
+          items: [],
+        },
+        {
+          company: 'Eletrozema S/A',
+          role: 'Apprentice • Administrative Assistant',
+          period: 'March 2021 — August 2022',
+          items: [],
+        },
+      ],
     },
     hero: {
       badge: 'Full Stack Developer',

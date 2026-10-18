@@ -92,23 +92,29 @@ export default function AboutSection() {
               )}
 
               {activeTab === 'experiencia' && (
-                <div className="max-w-3xl">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                    <h3 className="text-xl font-bold text-white">{about.experiencia.company}</h3>
-                    <span className="text-slate-700 hidden sm:inline">•</span>
-                    <span className="text-cyan-400 font-mono text-sm">{about.experiencia.role}</span>
-                  </div>
-                  <p className="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-6">
-                    {about.experiencia.period}
-                  </p>
-                  <ul className="space-y-3.5">
-                    {about.experiencia.items.map((item, index) => (
-                      <li key={index} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
-                        <span className="text-cyan-500 mt-1 shrink-0 text-xs">▹</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="max-w-3xl space-y-10">
+                  {about.experiencia.map((job) => (
+                    <div key={`${job.company}-${job.period}`}>
+                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                        <h3 className="text-xl font-bold text-white">{job.company}</h3>
+                        <span className="text-slate-700 hidden sm:inline">•</span>
+                        <span className="text-cyan-400 font-mono text-sm">{job.role}</span>
+                      </div>
+                      <p className="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-6">
+                        {job.period}
+                      </p>
+                      {job.items.length > 0 && (
+                        <ul className="space-y-3.5">
+                          {job.items.map((item, index) => (
+                            <li key={index} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                              <span className="text-cyan-500 mt-1 shrink-0 text-xs">▹</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
