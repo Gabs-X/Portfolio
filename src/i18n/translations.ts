@@ -330,7 +330,7 @@ export const translations: Record<Language, Translations> = {
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
         },
         {
-          title: 'Central IA',
+          title: 'Ohara',
           category: 'App desktop • IA • Automação',
           description:
             'App desktop para Windows que usa as assinaturas do Claude Code e do Codex como um assistente para o PC inteiro. Para cada pedido, escolhe a IA, o modelo e o nível de esforço mais adequados e acompanha a cota de cada assinatura.',
@@ -343,7 +343,7 @@ export const translations: Record<Language, Translations> = {
             'Integrações com agenda (iCal), GitHub, Slack e Whisper local, com segredos criptografados (DPAPI).',
             'Instalador e versão portátil gerados com electron-builder.',
           ],
-          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/central-ia' }],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/ohara' }],
         },
         {
           title: 'Gemini Chatbot',
@@ -655,7 +655,7 @@ export const translations: Record<Language, Translations> = {
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
         },
         {
-          title: 'Central IA',
+          title: 'Ohara',
           category: 'Desktop app • AI • Automation',
           description:
             'A Windows desktop app that turns Claude Code and Codex subscriptions into an assistant for the whole PC. For each request it picks the most suitable AI, model and effort level, and tracks the quota of each subscription.',
@@ -668,7 +668,7 @@ export const translations: Record<Language, Translations> = {
             'Integrations with calendar (iCal), GitHub, Slack and local Whisper, with encrypted secrets (DPAPI).',
             'Installer and portable build generated with electron-builder.',
           ],
-          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/central-ia' }],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/ohara' }],
         },
         {
           title: 'Gemini Chatbot',
