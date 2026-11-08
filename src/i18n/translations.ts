@@ -330,6 +330,22 @@ export const translations: Record<Language, Translations> = {
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
         },
         {
+          title: 'Central IA',
+          category: 'App desktop • IA • Automação',
+          description:
+            'App desktop para Windows que usa as assinaturas do Claude Code e do Codex como um assistente para o PC inteiro. Para cada pedido, escolhe a IA, o modelo e o nível de esforço mais adequados e acompanha a cota de cada assinatura.',
+          tags: ['Electron', 'Node.js', 'JavaScript', 'Claude Code', 'Codex', 'Whisper', 'electron-builder'],
+          highlights: [
+            'Roteamento local por palavras-chave, sem gastar token para decidir, que aprende com as trocas manuais de modelo.',
+            'Gestão de cota: troca Opus por Sonnet acima de 70% e passa para o Codex acima de 90%.',
+            'Agentes que trabalham em arquivos, repositórios, comandos do Windows e na web, com captura de tela e voz.',
+            'Reuniões resumidas a partir das transcrições, painel de demandas e automações agendadas.',
+            'Integrações com agenda (iCal), GitHub, Slack e Whisper local, com segredos criptografados (DPAPI).',
+            'Instalador e versão portátil gerados com electron-builder.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/central-ia' }],
+        },
+        {
           title: 'Gemini Chatbot',
           category: 'Full Stack • IA • Desafio técnico',
           description:
@@ -637,6 +653,22 @@ export const translations: Record<Language, Translations> = {
             'Account security: code confirmation, sign-in attempt limits and screens that never reveal which e-mails are registered.',
           ],
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
+        },
+        {
+          title: 'Central IA',
+          category: 'Desktop app • AI • Automation',
+          description:
+            'A Windows desktop app that turns Claude Code and Codex subscriptions into an assistant for the whole PC. For each request it picks the most suitable AI, model and effort level, and tracks the quota of each subscription.',
+          tags: ['Electron', 'Node.js', 'JavaScript', 'Claude Code', 'Codex', 'Whisper', 'electron-builder'],
+          highlights: [
+            'Local keyword-based routing that spends no tokens to decide and learns from manual model switches.',
+            'Quota management: swaps Opus for Sonnet above 70% and hands off to Codex above 90%.',
+            'Agents that work on files, repositories, Windows commands and the web, with screen capture and voice.',
+            'Meetings summarized from transcripts, a task board and scheduled automations.',
+            'Integrations with calendar (iCal), GitHub, Slack and local Whisper, with encrypted secrets (DPAPI).',
+            'Installer and portable build generated with electron-builder.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/central-ia' }],
         },
         {
           title: 'Gemini Chatbot',
