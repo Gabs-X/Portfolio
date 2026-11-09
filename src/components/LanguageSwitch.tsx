@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/useLanguage';
+import { PAGE_META } from '../seo';
 
 export default function LanguageSwitch() {
   const { language, setLanguage } = useLanguage();
@@ -10,19 +11,24 @@ export default function LanguageSwitch() {
       aria-label="Language"
     >
       {(['pt', 'en'] as const).map((lang) => (
-        <button
+        // Link de verdade (/ e /en/): funciona sem JS e ajuda buscadores a achar a versão em inglês
+        <a
           key={lang}
-          type="button"
-          onClick={() => setLanguage(lang)}
+          href={PAGE_META[lang].path}
+          hrefLang={PAGE_META[lang].htmlLang}
+          onClick={(event) => {
+            event.preventDefault();
+            setLanguage(lang);
+          }}
           className={`px-2.5 py-1 rounded-md transition-colors ${
             language === lang
               ? 'bg-slate-800 text-cyan-400'
               : 'text-slate-500 hover:text-slate-300'
           }`}
-          aria-pressed={language === lang}
+          aria-current={language === lang ? 'page' : undefined}
         >
           {lang.toUpperCase()}
-        </button>
+        </a>
       ))}
     </div>
   );

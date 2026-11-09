@@ -16,16 +16,12 @@ export default function AnimateIn({
   trigger = 'view',
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(() => {
-    if (trigger === 'load') return true;
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    }
-    return false;
-  });
+  // Mesmo estado inicial no HTML pré-renderizado e no navegador (evita erro de hidratação).
+  // Movimento reduzido e navegação sem JS são tratados no CSS (.animate-pending).
+  const [visible, setVisible] = useState(trigger === 'load');
 
   useEffect(() => {
-    if (trigger === 'load' || visible) return;
+    if (visible) return;
 
     const el = ref.current;
     if (!el) return;
@@ -42,14 +38,14 @@ export default function AnimateIn({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [trigger, visible]);
+  }, [visible]);
 
   const animClass = direction === 'down' ? 'animate-fade-in-down' : 'animate-fade-in-up';
 
   return (
     <div
       ref={ref}
-      className={`${visible ? animClass : 'opacity-0'} ${className}`}
+      className={`${visible ? animClass : 'animate-pending'} ${className}`}
       style={visible ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
