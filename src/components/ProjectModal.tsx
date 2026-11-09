@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { ProjectTranslation } from '../i18n/translations';
+import ProjectImage from './ProjectImage';
 
 interface ProjectModalProps {
   project: ProjectTranslation;
@@ -79,6 +80,9 @@ export default function ProjectModal({
         </div>
 
         <div className="p-6 pt-4 space-y-6">
+          {project.image && (
+            <ProjectImage src={project.image} alt={project.title} pendingLabel="" />
+          )}
           <p className="text-slate-300 text-sm leading-relaxed">{project.description}</p>
 
           <div>

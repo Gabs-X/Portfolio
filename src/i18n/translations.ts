@@ -7,6 +7,8 @@ export interface ProjectTranslation {
   tags: string[];
   highlights: string[];
   links?: { label: string; url: string }[];
+  /** Print do projeto em public/projects/. null = print pendente (o placeholder só aparece em dev). */
+  image?: string | null;
 }
 
 export interface Translations {
@@ -14,6 +16,7 @@ export interface Translations {
     sobre: string;
     projetos: string;
     contato: string;
+    cv: string;
     openMenu: string;
     closeMenu: string;
     language: string;
@@ -45,6 +48,7 @@ export interface Translations {
     description: string;
     viewProjects: string;
     contact: string;
+    downloadCv: string;
   };
   projects: {
     sectionLabel: string;
@@ -57,6 +61,8 @@ export interface Translations {
       technologies: string;
       links: string;
     };
+    screenshotAlt: string;
+    screenshotPending: string;
     items: ProjectTranslation[];
   };
   sideProjects: {
@@ -65,8 +71,11 @@ export interface Translations {
     items: ProjectTranslation[];
   };
   footer: {
+    sectionLabel: string;
     title: string;
     subtitle: string;
+    email: string;
+    downloadCv: string;
   };
 }
 
@@ -76,6 +85,7 @@ export const translations: Record<Language, Translations> = {
       sobre: '/sobre',
       projetos: '/projetos',
       contato: '/contato',
+      cv: 'Baixar CV',
       openMenu: 'Abrir menu',
       closeMenu: 'Fechar menu',
       language: 'Idioma',
@@ -88,12 +98,12 @@ export const translations: Record<Language, Translations> = {
         experiencia: 'Experiência',
       },
       sobre: {
-        headline: 'Transformando processos complexos em software.',
+        headline: 'Do banco SQL Server à tela em React.',
         paragraphs: [
-          'Sou Gabriel Anthony, Desenvolvedor Full Stack formado em Sistemas de Informação, com experiência em desenvolvimento e sustentação de sistemas corporativos, integrações financeiras, aplicações web e bancos de dados SQL Server.',
-          'Minha trajetória foi construída atuando diretamente em ambientes de negócio reais, participando desde o levantamento de requisitos até a entrega e manutenção de soluções utilizadas por diferentes áreas da empresa.',
-          'Tenho experiência com React, TypeScript, Next.js, .NET, C#, SQL Server, além de forte atuação em integrações entre sistemas, regras de negócio, autenticação OAuth, logística, estoque e processos financeiros.',
-          'Gosto de entender o problema antes de escrever código. Meu foco é criar soluções simples, confiáveis e que gerem impacto real para o negócio.',
+          'Sou Gabriel Anthony, Desenvolvedor Full Stack formado em Sistemas de Informação. Construo sistemas que precisam funcionar todo dia, do banco SQL Server à tela em React, passando pela API e pelo servidor em produção.',
+          'Passei mais de 3 anos desenvolvendo na Zema, de estagiário a desenvolvedor full stack: criei do zero o sistema de almoxarifado, mantive em C#/.NET os sistemas de empréstimos e operações financeiras, com tabelas de mais de 300 colunas e cálculos de juros compostos, e resolvi incidentes de produção no IIS.',
+          'Desde outubro de 2026 sou AI Engineer na Pixaflow, desenvolvendo com Claude e Codex em um projeto de cliente com equipe internacional e comunicação em inglês. Por conta própria, mantenho o StackMatch e o Ohara.',
+          'Busco vagas Full Stack em que o back-end pese: C#/.NET ou Node.js com SQL, e React no front.',
         ],
       },
       skills: {
@@ -107,36 +117,46 @@ export const translations: Record<Language, Translations> = {
       },
       experiencia: [
         {
+          company: 'Pixaflow',
+          role: 'AI Engineer (PJ • Remoto)',
+          period: 'Outubro 2026 — Atual',
+          items: [
+            'Desenvolvimento com Claude e Codex em projeto de cliente, com equipe internacional.',
+            'Toda a comunicação do time em inglês.',
+          ],
+        },
+        {
           company: 'Projetos independentes',
           role: 'Desenvolvedor Full Stack (autônomo)',
           period: 'Novembro 2025 — Atual',
           items: [
-            'StackMatch: plataforma que conecta empresas e desenvolvedores, do zero ao ar em 3 semanas.',
-            'Chatbot com IA (React, Node.js e Gemini) entregue em 24 horas como desafio técnico.',
+            'StackMatch: plataforma que conecta empresas e desenvolvedores, colocada no ar em 3 semanas, com 460 testes automatizados.',
+            'Ohara: app desktop em Electron que orquestra o Claude Code e o Codex.',
             'Kanban automatizado com GitHub Projects, GitHub Actions e GraphQL.',
           ],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Desenvolvedor Full Stack',
           period: 'Agosto 2023 — Outubro 2025',
           items: [
-            'Desenvolvimento e sustentação de sistemas corporativos.',
-            'APIs REST e integrações financeiras.',
-            'Desenvolvimento de aplicações React e .NET.',
-            'Modelagem e consultas SQL Server.',
-            'Sistemas de estoque, logística, assistência técnica e processos financeiros.',
-            'Investigação e resolução de incidentes em produção.',
+            'Efetivado em agosto de 2023, depois de 1 ano de estágio no mesmo time.',
+            'Criei do zero o sistema de almoxarifado (SQL Server, API em Next.js e front-end em React/TypeScript), que substituiu uma solução terceirizada e passou a emitir as notas de uso e consumo.',
+            'Mantive e evoluí em C#/.NET e SQL Server os sistemas de empréstimos e operações financeiras, com tabelas de mais de 300 colunas, stored procedures e cálculos de juros compostos.',
+            'Integrei a logística reversa, as ordens de serviço e a garantia entre a empresa, fabricantes e transportadoras.',
+            'Implementei OAuth 2.0 em aplicações legadas .NET e desenvolvi em React/Next.js um portal de cadastro de clientes em empresas terceiras, com fluxo de aprovação, permissões e rastreabilidade.',
+            'Diagnostiquei incidentes em produção por logs, dumps, IIS Application Pools e consumo de CPU.',
+            'Mentorei estagiários e novos devs, com onboarding e code review.',
           ],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Estagiário de Desenvolvimento Full Stack',
           period: 'Agosto 2022 — Julho 2023',
-          items: [],
+          items: ['Estágio no time de desenvolvimento, em sistemas corporativos internos. Efetivado depois de 12 meses.'],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Jovem Aprendiz • Assistente Administrativo',
           period: 'Março 2021 — Agosto 2022',
           items: [],
@@ -145,11 +165,12 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       badge: 'Desenvolvedor Full Stack',
-      title: 'Construindo sistemas corporativos de ponta a ponta.',
+      title: 'Full stack com base em .NET e SQL Server, hoje construindo com React e IA.',
       description:
-        'Desenvolvedor Full Stack formado em Sistemas de Informação, com experiência em desenvolvimento e sustentação de sistemas corporativos utilizando React, TypeScript, .NET, SQL Server e integrações entre aplicações. Atuo do levantamento de requisitos à produção — APIs REST, regras de negócio e ambientes de negócio reais.',
+        'Passei mais de 3 anos na Zema criando e sustentando sistemas corporativos e integrações financeiras, do banco SQL Server à interface em React. Hoje sou AI Engineer na Pixaflow e mantenho projetos próprios como o StackMatch e o Ohara.',
       viewProjects: 'Ver Projetos',
       contact: 'Contato',
+      downloadCv: 'Baixar CV',
     },
     projects: {
       sectionLabel: '// Experiência Profissional',
@@ -162,6 +183,8 @@ export const translations: Record<Language, Translations> = {
         technologies: 'Tecnologias',
         links: 'Links',
       },
+      screenshotAlt: 'Captura de tela do projeto',
+      screenshotPending: 'Print pendente',
       items: [
         {
           title: 'Sistema Corporativo de Almoxarifado',
@@ -213,7 +236,7 @@ export const translations: Record<Language, Translations> = {
     
         {
           title: 'Integrações Financeiras Corporativas',
-          category: 'Backend • Sistemas Críticos',
+          category: 'Backend • Sistemas Financeiros',
           description:
             'Atuação na sustentação e evolução de aplicações responsáveis pelo processamento financeiro da empresa, implementando integrações entre sistemas, autenticação OAuth, manutenção de regras de negócio, consultas SQL Server e investigação de incidentes em produção.',
           tags: [
@@ -262,7 +285,7 @@ export const translations: Record<Language, Translations> = {
           title: 'Motor de Cálculos Financeiros',
           category: 'Backend • Regras de Negócio',
           description:
-            'Desenvolvimento e otimização de componentes responsáveis pelo processamento de cálculos financeiros complexos, incluindo juros compostos, validações de negócio e algoritmos utilizados em operações financeiras corporativas.',
+            'Desenvolvimento e otimização dos componentes em C#/.NET que fazem os cálculos financeiros da empresa, como juros compostos e as validações de negócio das operações financeiras.',
           tags: [
             '.NET',
             'C#',
@@ -328,6 +351,7 @@ export const translations: Record<Language, Translations> = {
             'Segurança de conta: confirmação por código, limite de tentativas de login e telas que não revelam quais e-mails estão cadastrados.',
           ],
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
+          image: '/projects/stackmatch.webp',
         },
         {
           title: 'Ohara',
@@ -346,20 +370,7 @@ export const translations: Record<Language, Translations> = {
             'Instalador e versão portátil gerados com electron-builder.',
           ],
           links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/ohara' }],
-        },
-        {
-          title: 'Gemini Chatbot',
-          category: 'Full Stack • IA • Desafio técnico',
-          description:
-            'Chatbot com IA desenvolvido em apenas 24 horas, como desafio técnico. Front-end em React e back-end em Node.js com Express integrado à API do Gemini, com testes automatizados e tratamento de erros.',
-          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
-          highlights: [
-            'Entregue em 24 horas, do zero ao funcionamento completo.',
-            'Back-end organizado em Route → Controller → Service.',
-            'Testes automatizados de controller, service e rotas com Vitest e Supertest.',
-            'Tratamento de mensagem vazia, configuração ausente e falha na API.',
-          ],
-          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+          image: null, // pendente: public/projects/ohara.webp
         },
         {
           title: 'GitHub Projects Lab',
@@ -378,6 +389,7 @@ export const translations: Record<Language, Translations> = {
             { label: 'GitHub', url: 'https://github.com/Gabs-X-Lab/github-projects-lab' },
             { label: 'kanban-automation', url: 'https://github.com/Gabs-X-Lab/kanban-automation' },
           ],
+          image: null, // pendente: public/projects/github-projects-lab.webp
         },
         {
           title: 'SampleBankOperations',
@@ -392,12 +404,31 @@ export const translations: Record<Language, Translations> = {
             'Relatório de cobertura de testes com coverlet.',
           ],
           links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/SampleBankOperationsTest' }],
+          image: null, // pendente: public/projects/samplebankoperations.webp
+        },
+        {
+          title: 'Gemini Chatbot',
+          category: 'Full Stack • IA • Desafio técnico',
+          description:
+            'Chatbot com IA desenvolvido em apenas 24 horas, como desafio técnico. Front-end em React e back-end em Node.js com Express integrado à API do Gemini, com testes automatizados e tratamento de erros.',
+          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
+          highlights: [
+            'Entregue em 24 horas, do zero ao funcionamento completo.',
+            'Back-end organizado em Route → Controller → Service.',
+            'Testes automatizados de controller, service e rotas com Vitest e Supertest.',
+            'Tratamento de mensagem vazia, configuração ausente e falha na API.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+          image: null, // pendente: public/projects/gemini-chatbot.webp
         },
       ],
     },
     footer: {
+      sectionLabel: '// Contato',
       title: 'Vamos conversar.',
       subtitle: 'Estou aberto a oportunidades como Desenvolvedor Full Stack.',
+      email: 'E-mail',
+      downloadCv: 'Baixar CV (PDF)',
     },
   },
   en: {
@@ -405,6 +436,7 @@ export const translations: Record<Language, Translations> = {
       sobre: '/about',
       projetos: '/projects',
       contato: '/contact',
+      cv: 'Download CV',
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       language: 'Language',
@@ -417,12 +449,12 @@ export const translations: Record<Language, Translations> = {
         experiencia: 'Experience',
       },
       sobre: {
-        headline: 'Turning complex processes into software.',
+        headline: 'From the SQL Server database to the React screen.',
         paragraphs: [
-          "I'm Gabriel Anthony, a Full Stack Developer with a degree in Information Systems, experienced in developing and maintaining enterprise systems, financial integrations, web applications, and SQL Server databases.",
-          'My career has been built working directly in real business environments, participating from requirements gathering to delivery and maintenance of solutions used across different areas of the company.',
-          'I have experience with React, TypeScript, Next.js, .NET, C#, and SQL Server, along with strong work in system integrations, business rules, OAuth authentication, logistics, inventory, and financial processes.',
-          'I like to understand the problem before writing code. My focus is creating simple, reliable solutions that generate real business impact.',
+          "I'm Gabriel Anthony, a Full Stack Developer with a degree in Information Systems. I build systems that have to work every day, from the SQL Server database to the React screen, including the API and the production server.",
+          'I spent over 3 years as a developer at Zema, going from intern to full stack developer: I built the warehouse system from scratch, maintained the loan and financial operations systems in C#/.NET, with tables of 300+ columns and compound-interest calculations, and fixed production incidents on IIS.',
+          "Since October 2026 I've been an AI Engineer at Pixaflow, building with Claude and Codex on a client project with an international team, with all communication in English. On my own, I maintain StackMatch and Ohara.",
+          "I'm looking for Full Stack roles where the back end matters: C#/.NET or Node.js with SQL, and React on the front end.",
         ],
       },
       skills: {
@@ -436,36 +468,46 @@ export const translations: Record<Language, Translations> = {
       },
       experiencia: [
         {
+          company: 'Pixaflow',
+          role: 'AI Engineer (Contractor • Remote)',
+          period: 'October 2026 — Present',
+          items: [
+            'Building with Claude and Codex on a client project with an international team.',
+            'All team communication in English.',
+          ],
+        },
+        {
           company: 'Independent projects',
           role: 'Full Stack Developer (self-employed)',
           period: 'November 2025 — Present',
           items: [
-            'StackMatch: a platform that connects companies and developers, built and launched in 3 weeks.',
-            'AI chatbot (React, Node.js and Gemini) delivered in 24 hours as a technical challenge.',
+            'StackMatch: a platform that connects companies and developers, built and launched in 3 weeks, with 460 automated tests.',
+            'Ohara: an Electron desktop app that orchestrates Claude Code and Codex.',
             'Automated Kanban with GitHub Projects, GitHub Actions and GraphQL.',
           ],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Full Stack Developer',
           period: 'August 2023 — October 2025',
           items: [
-            'Development and maintenance of enterprise systems.',
-            'REST APIs and financial integrations.',
-            'React and .NET application development.',
-            'SQL Server modeling and queries.',
-            'Inventory, logistics, technical support, and financial process systems.',
-            'Production incident investigation and resolution.',
+            'Promoted to Full Stack Developer in August 2023, after a one-year internship on the same team.',
+            'Built the warehouse management system from scratch (SQL Server, Next.js API, React/TypeScript front end). It replaced an outsourced solution and issues internal-use and consumption invoices.',
+            'Maintained and extended the loan and financial operations systems in C#/.NET and SQL Server, with tables of 300+ columns, stored procedures and compound-interest calculations.',
+            'Integrated reverse logistics, service orders and warranty flows between the company, manufacturers and carriers.',
+            'Implemented OAuth 2.0 in legacy .NET applications and built a React/Next.js portal for registering clients in third-party companies, with approval workflows, permissions and audit trails.',
+            'Diagnosed production incidents through logs, memory dumps, IIS Application Pools and CPU usage.',
+            'Mentored interns and new developers through onboarding and code review.',
           ],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Full Stack Development Intern',
           period: 'August 2022 — July 2023',
-          items: [],
+          items: ['Internship on the development team, working on internal corporate systems. Promoted after 12 months.'],
         },
         {
-          company: 'Eletrozema S/A',
+          company: 'Eletrozema S/A (Zema)',
           role: 'Apprentice • Administrative Assistant',
           period: 'March 2021 — August 2022',
           items: [],
@@ -474,11 +516,12 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       badge: 'Full Stack Developer',
-      title: 'Building end-to-end enterprise systems.',
+      title: 'Full stack developer grounded in .NET and SQL Server, now building with React and AI.',
       description:
-        'Full Stack Developer with a degree in Information Systems, experienced in building and maintaining enterprise systems using React, TypeScript, .NET, SQL Server and application integrations. I work from requirements gathering to production — REST APIs, business rules and real-world business environments.',
+        "I spent over 3 years at Zema building and maintaining corporate systems and financial integrations, from the SQL Server database to the React interface. Today I'm an AI Engineer at Pixaflow, and I maintain my own projects such as StackMatch and Ohara.",
       viewProjects: 'View Projects',
       contact: 'Contact',
+      downloadCv: 'Download CV (PT)',
     },
     projects: {
       sectionLabel: '// Professional Experience',
@@ -491,6 +534,8 @@ export const translations: Record<Language, Translations> = {
         technologies: 'Technologies',
         links: 'Links',
       },
+      screenshotAlt: 'Project screenshot',
+      screenshotPending: 'Screenshot pending',
       items: [
         {
           title: 'Corporate Warehouse Management System',
@@ -542,9 +587,9 @@ export const translations: Record<Language, Translations> = {
     
         {
           title: 'Corporate Financial Integrations',
-          category: 'Backend • Mission-Critical Systems',
+          category: 'Backend • Financial Systems',
           description:
-            'Contributed to the maintenance and evolution of mission-critical financial applications by implementing REST integrations, OAuth authentication, business rules, SQL Server queries and production troubleshooting for high-availability corporate systems.',
+            "Maintained and evolved the company's financial processing applications: REST integrations between systems, OAuth authentication, business rules, SQL Server queries and production incident investigation.",
           tags: [
             '.NET',
             'C#',
@@ -558,9 +603,9 @@ export const translations: Record<Language, Translations> = {
           highlights: [
             'Developed and maintained REST integrations between financial systems.',
             'Implemented OAuth authentication flows.',
-            'Maintained complex financial business rules.',
+            'Maintained and evolved financial business rules.',
             'Performed SQL Server analysis and data validation.',
-            'Resolved production incidents in critical environments.',
+            'Investigated and resolved production incidents.',
           ],
         },
     
@@ -590,7 +635,7 @@ export const translations: Record<Language, Translations> = {
           title: 'Financial Calculation Engine',
           category: 'Backend • Business Rules',
           description:
-            'Developed and optimized backend components responsible for complex financial calculations, including compound interest algorithms, business validations and performance improvements, ensuring consistency and reliability across financial operations.',
+            "Developed and optimized the C#/.NET components that run the company's financial calculations, such as compound interest and the business validations of financial operations.",
           tags: [
             '.NET',
             'C#',
@@ -655,6 +700,7 @@ export const translations: Record<Language, Translations> = {
             'Account security: code confirmation, sign-in attempt limits and screens that never reveal which e-mails are registered.',
           ],
           links: [{ label: 'stackmatch.dev.br', url: 'https://stackmatch.dev.br' }],
+          image: '/projects/stackmatch.webp',
         },
         {
           title: 'Ohara',
@@ -673,20 +719,7 @@ export const translations: Record<Language, Translations> = {
             'Installer and portable build generated with electron-builder.',
           ],
           links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/ohara' }],
-        },
-        {
-          title: 'Gemini Chatbot',
-          category: 'Full Stack • AI • Technical challenge',
-          description:
-            'An AI chatbot built in just 24 hours as a technical challenge. React front end and a Node.js/Express back end integrated with the Gemini API, with automated tests and error handling.',
-          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
-          highlights: [
-            'Delivered in 24 hours, from scratch to fully working.',
-            'Back end organized as Route → Controller → Service.',
-            'Automated tests for controller, service and routes with Vitest and Supertest.',
-            'Handles empty messages, missing configuration and API failures.',
-          ],
-          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+          image: null, // pendente: public/projects/ohara.webp
         },
         {
           title: 'GitHub Projects Lab',
@@ -705,6 +738,7 @@ export const translations: Record<Language, Translations> = {
             { label: 'GitHub', url: 'https://github.com/Gabs-X-Lab/github-projects-lab' },
             { label: 'kanban-automation', url: 'https://github.com/Gabs-X-Lab/kanban-automation' },
           ],
+          image: null, // pendente: public/projects/github-projects-lab.webp
         },
         {
           title: 'SampleBankOperations',
@@ -719,12 +753,31 @@ export const translations: Record<Language, Translations> = {
             'Test coverage report with coverlet.',
           ],
           links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/SampleBankOperationsTest' }],
+          image: null, // pendente: public/projects/samplebankoperations.webp
+        },
+        {
+          title: 'Gemini Chatbot',
+          category: 'Full Stack • AI • Technical challenge',
+          description:
+            'An AI chatbot built in just 24 hours as a technical challenge. React front end and a Node.js/Express back end integrated with the Gemini API, with automated tests and error handling.',
+          tags: ['React', 'TypeScript', 'Node.js', 'Express', 'Gemini API', 'Vitest', 'Supertest', 'Tailwind CSS'],
+          highlights: [
+            'Delivered in 24 hours, from scratch to fully working.',
+            'Back end organized as Route → Controller → Service.',
+            'Automated tests for controller, service and routes with Vitest and Supertest.',
+            'Handles empty messages, missing configuration and API failures.',
+          ],
+          links: [{ label: 'GitHub', url: 'https://github.com/Gabs-X/gemini-chatbot' }],
+          image: null, // pendente: public/projects/gemini-chatbot.webp
         },
       ],
     },
     footer: {
+      sectionLabel: '// Contact',
       title: "Let's talk.",
       subtitle: "I'm open to opportunities as a Full Stack Developer.",
+      email: 'E-mail',
+      downloadCv: 'Download CV (PDF, in Portuguese)',
     },
   },
 };
