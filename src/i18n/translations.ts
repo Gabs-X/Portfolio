@@ -338,7 +338,9 @@ export const translations: Record<Language, Translations> = {
           highlights: [
             'Roteamento local por palavras-chave, sem gastar token para decidir, que aprende com as trocas manuais de modelo.',
             'Gestão de cota: troca Opus por Sonnet acima de 70% e passa para o Codex acima de 90%.',
-            'Agentes que trabalham em arquivos, repositórios, comandos do Windows e na web, com captura de tela e voz.',
+            'Agentes que trabalham em arquivos, repositórios, comandos do Windows e na web, com captura de tela.',
+            'Resolve ou aprende: quando falta uma capacidade, oferece se alterar e implementa a mudança no próprio código.',
+            'Correção de texto em qualquer app por atalho global (Ctrl+Alt+C), mantendo o estilo de quem escreveu.',
             'Reuniões resumidas a partir das transcrições, painel de demandas e automações agendadas.',
             'Integrações com agenda (iCal), GitHub, Slack e Whisper local, com segredos criptografados (DPAPI).',
             'Instalador e versão portátil gerados com electron-builder.',
@@ -663,7 +665,9 @@ export const translations: Record<Language, Translations> = {
           highlights: [
             'Local keyword-based routing that spends no tokens to decide and learns from manual model switches.',
             'Quota management: swaps Opus for Sonnet above 70% and hands off to Codex above 90%.',
-            'Agents that work on files, repositories, Windows commands and the web, with screen capture and voice.',
+            'Agents that work on files, repositories, Windows commands and the web, with screen capture.',
+            'Solves or learns: when a capability is missing, it offers to change itself and implements the change in its own code.',
+            'Text correction in any app via a global hotkey (Ctrl+Alt+C), keeping the author’s style.',
             'Meetings summarized from transcripts, a task board and scheduled automations.',
             'Integrations with calendar (iCal), GitHub, Slack and local Whisper, with encrypted secrets (DPAPI).',
             'Installer and portable build generated with electron-builder.',
