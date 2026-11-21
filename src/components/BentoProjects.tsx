@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../i18n/useLanguage';
 import type { ProjectTranslation } from '../i18n/translations';
 import ProjectModal from './ProjectModal';
+import ProjectImage from './ProjectImage';
 import AnimateIn from './AnimateIn';
 
 interface BentoProjectsProps {
@@ -35,6 +36,12 @@ export default function BentoProjects({ id, sectionLabel, title, projects }: Ben
             >
               <div className="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all group h-full">
                 <div>
+                  <ProjectImage
+                    src={project.image}
+                    alt={`${t.projects.screenshotAlt}: ${project.title}`}
+                    pendingLabel={`${t.projects.screenshotPending}: ${project.title}`}
+                    className="mb-5"
+                  />
                   <div className="flex justify-between items-start mb-4">
                     <span className="text-xs font-mono text-slate-500">{project.category}</span>
                     {index === 0 && (

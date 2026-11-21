@@ -30,7 +30,13 @@
   animation: fade-in-down 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Bloco ainda fora da tela, esperando para animar (ver AnimateIn) */
+.animate-pending {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-pending,
   .animate-fade-in-up,
   .animate-fade-in-down {
     animation: none;

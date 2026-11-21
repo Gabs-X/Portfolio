@@ -1,22 +1,27 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { translations } from './translations';
 import type { Language } from './translations';
-import {
-  LanguageContext,
-  STORAGE_KEY,
-  getInitialLanguage,
-} from './languageContext';
+import { LanguageContext } from './languageContext';
+import { PAGE_META } from '../seo';
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
+interface LanguageProviderProps {
+  children: ReactNode;
+  /** Idioma da página: vem da URL ("/" = PT, "/en/" = EN), igual no HTML estático e no navegador. */
+  initialLanguage: Language;
+}
+
+export function LanguageProvider({ children, initialLanguage }: LanguageProviderProps) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+    // Troca a URL sem recarregar, mantendo a âncora atual (ex.: #projetos)
+    window.history.replaceState(null, '', `${PAGE_META[lang].path}${window.location.hash}`);
   };
 
   useEffect(() => {
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+    document.documentElement.lang = PAGE_META[language].htmlLang;
+    document.title = PAGE_META[language].title;
   }, [language]);
 
   return (

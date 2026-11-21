@@ -3,6 +3,8 @@ import { useLanguage } from '../i18n/useLanguage';
 import LanguageSwitch from './LanguageSwitch';
 import AnimateIn from './AnimateIn';
 import BrandLogo from './BrandLogo';
+import ContactLinks from './ContactLinks';
+import { CONTACT } from '../config';
 
 const navLinks = [
   { href: '#sobre', key: 'sobre' as const },
@@ -60,6 +62,14 @@ export default function Header() {
                 </ul>
               </nav>
 
+              <a
+                href={CONTACT.cv}
+                download
+                className="hidden sm:inline-block text-[11px] font-mono uppercase tracking-wider text-cyan-400 border border-cyan-900 bg-cyan-950/40 hover:bg-cyan-950 px-3 py-1.5 rounded-lg transition-colors"
+              >
+                {t.header.cv}
+              </a>
+
               <div className="hidden md:block">
                 <LanguageSwitch />
               </div>
@@ -109,8 +119,19 @@ export default function Header() {
                 </li>
               ))}
             </ul>
+            <div className="max-w-6xl mx-auto px-8 pb-4 pt-4 border-t border-slate-800/80 space-y-4">
+              <a
+                href={CONTACT.cv}
+                download
+                onClick={closeMenu}
+                className="inline-block text-xs font-mono uppercase tracking-wider text-slate-950 bg-cyan-500 hover:bg-cyan-600 font-bold px-4 py-2.5 rounded-lg transition-colors"
+              >
+                {t.header.cv}
+              </a>
+              <ContactLinks />
+            </div>
             <div className="max-w-6xl mx-auto px-4 pb-5 pt-1 border-t border-slate-800/80">
-              <p className="px-4 pb-2 text-[10px] font-mono uppercase tracking-widest text-slate-500">
+              <p className="px-4 pt-3 pb-2 text-[10px] font-mono uppercase tracking-widest text-slate-500">
                 {t.header.language}
               </p>
               <div className="px-4">

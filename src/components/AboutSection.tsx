@@ -10,6 +10,14 @@ export default function AboutSection() {
   const about = t.about;
   const [activeTab, setActiveTab] = useState<AboutTab>('sobre');
 
+  const panelProps = (key: AboutTab) => ({
+    id: `painel-${key}`,
+    role: 'tabpanel',
+    'aria-labelledby': `aba-${key}`,
+    hidden: activeTab !== key,
+    className: `p-8 md:p-10 ${activeTab === key ? 'animate-fade-in-up' : ''}`,
+  });
+
   return (
     <section
       id="sobre"
@@ -28,11 +36,15 @@ export default function AboutSection() {
         </AnimateIn>
 
         <AnimateIn trigger="view" delay={120}>
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label={about.sectionLabel}>
             {TAB_KEYS.map((key) => (
               <button
                 key={key}
+                id={`aba-${key}`}
                 type="button"
+                role="tab"
+                aria-selected={activeTab === key}
+                aria-controls={`painel-${key}`}
                 onClick={() => setActiveTab(key)}
                 className={`text-xs font-mono uppercase tracking-wider px-5 py-2.5 rounded-lg border transition-all ${
                   activeTab === key
@@ -59,64 +71,64 @@ export default function AboutSection() {
               </span>
             </div>
 
-            <div key={activeTab} className="p-8 md:p-10 animate-fade-in-up">
-              {activeTab === 'sobre' && (
-                <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center md:items-start">
-                  <div className="space-y-5 max-w-3xl">
-                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
-                      {about.sobre.headline}
-                    </h2>
-                    {about.sobre.paragraphs.map((paragraph, index) => (
-                      <p key={index} className="text-slate-400 text-sm leading-relaxed">
-                        {paragraph}
-                      </p>
-                    ))}
+            {/* Os três painéis vão para o HTML (pré-renderizado), assim ATS e buscadores leem
+                skills e experiência mesmo sem clicar nas abas; os inativos ficam com hidden. */}
+            <div {...panelProps('sobre')}>
+              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center md:items-start">
+                <div className="space-y-5 max-w-3xl">
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+                    {about.sobre.headline}
+                  </h2>
+                  {about.sobre.paragraphs.map((paragraph, index) => (
+                    <p key={index} className="text-slate-400 text-sm leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div {...panelProps('skills')}>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {about.skills.categories.map((category, index) => (
+                  <div
+                    key={index}
+                    className="bg-slate-900 rounded-xl border border-slate-700/50 p-5 hover:border-cyan-500/30 transition-colors"
+                  >
+                    <h3 className="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-3">
+                      {category.label}
+                    </h3>
+                    <p className="text-slate-300 text-sm leading-relaxed font-sans">{category.items}</p>
                   </div>
-                </div>
-              )}
+                ))}
+              </div>
+            </div>
 
-              {activeTab === 'skills' && (
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {about.skills.categories.map((category, index) => (
-                    <div
-                      key={index}
-                      className="bg-slate-900 rounded-xl border border-slate-700/50 p-5 hover:border-cyan-500/30 transition-colors"
-                    >
-                      <h3 className="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-3">
-                        {category.label}
-                      </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed font-sans">{category.items}</p>
+            <div {...panelProps('experiencia')}>
+              <div className="max-w-3xl space-y-10">
+                {about.experiencia.map((job) => (
+                  <div key={`${job.company}-${job.period}`}>
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                      <h3 className="text-xl font-bold text-white">{job.company}</h3>
+                      <span className="text-slate-700 hidden sm:inline">•</span>
+                      <span className="text-cyan-400 font-mono text-sm">{job.role}</span>
                     </div>
-                  ))}
-                </div>
-              )}
-
-              {activeTab === 'experiencia' && (
-                <div className="max-w-3xl space-y-10">
-                  {about.experiencia.map((job) => (
-                    <div key={`${job.company}-${job.period}`}>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                        <h3 className="text-xl font-bold text-white">{job.company}</h3>
-                        <span className="text-slate-700 hidden sm:inline">•</span>
-                        <span className="text-cyan-400 font-mono text-sm">{job.role}</span>
-                      </div>
-                      <p className="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-6">
-                        {job.period}
-                      </p>
-                      {job.items.length > 0 && (
-                        <ul className="space-y-3.5">
-                          {job.items.map((item, index) => (
-                            <li key={index} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
-                              <span className="text-cyan-500 mt-1 shrink-0 text-xs">▹</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
+                    <p className="text-[11px] font-mono text-slate-500 uppercase tracking-wider mb-6">
+                      {job.period}
+                    </p>
+                    {job.items.length > 0 && (
+                      <ul className="space-y-3.5">
+                        {job.items.map((item, index) => (
+                          <li key={index} className="flex gap-3 text-slate-400 text-sm leading-relaxed">
+                            <span className="text-cyan-500 mt-1 shrink-0 text-xs">▹</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </AnimateIn>
